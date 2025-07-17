@@ -49,6 +49,7 @@ This is a multi-page web design project for the Web Design subject. The main obj
 ### Technology
 ![HTML](https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS](https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JS](https://img.shields.io/badge/JS-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
 ## Rules, Practices and Principles
 1. Always use `WD-` in the project folder title.
