@@ -1,4 +1,4 @@
-/* Reset and Base Styles */
+
 * {
     margin: 0;
     padding: 0;
@@ -12,7 +12,6 @@ body {
     background-color: #ffffff;
 }
 
-/* Header and Navigation */
 header {
     background-color: #ffffff;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -59,12 +58,10 @@ header {
     background-color: #f0f0f0;
 }
 
-/* Main Section */
 main {
     padding-top: 100px;
 }
 
-/* Hero Section */
 .certifications-hero {
     padding: 60px 20px 30px;
     background-color: #f9f9f9;
@@ -82,7 +79,6 @@ main {
     color: #666;
 }
 
-/* Fade-in Animation */
 .fade-in {
     opacity: 0;
     transform: translateY(20px);
@@ -94,7 +90,6 @@ main {
     transform: translateY(0);
 }
 
-/* Content Section */
 .certifications-content {
     padding: 40px 20px;
 }
@@ -104,14 +99,12 @@ main {
     margin: 0 auto;
 }
 
-/* Grid Layout */
 .certifications-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
 }
 
-/* Certification Card */
 .certification-card {
     background-color: #fff;
     border: 1px solid #eee;
@@ -199,7 +192,6 @@ main {
     opacity: 1;
 }
 
-/* Footer */
 footer {
     background-color: #fafafa;
     padding: 20px 0;
@@ -213,7 +205,6 @@ footer {
     color: #999;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .nav-container {
         flex-direction: column;
