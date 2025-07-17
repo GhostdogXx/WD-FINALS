@@ -82,6 +82,18 @@ main {
     color: #666;
 }
 
+/* Fade-in Animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
 /* Content Section */
 .certifications-content {
     padding: 40px 20px;
@@ -107,6 +119,13 @@ main {
     overflow: hidden;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.certification-card.aos-animate {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .certification-card:hover {
@@ -114,11 +133,36 @@ main {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
+.certification-badge {
+    position: relative;
+    overflow: hidden;
+}
+
 .certification-badge img {
     width: 100%;
     height: auto;
     display: block;
     border-bottom: 1px solid #eee;
+    transition: transform 0.3s ease;
+}
+
+.certification-badge:hover img {
+    transform: scale(1.05);
+}
+
+.certification-badge::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s ease;
+}
+
+.certification-badge:hover::after {
+    left: 100%;
 }
 
 .certification-info {
@@ -129,6 +173,11 @@ main {
     font-size: 1.25rem;
     color: #222;
     margin-bottom: 10px;
+    transition: color 0.3s ease;
+}
+
+.certification-card:hover .certification-info h3 {
+    color: #007acc;
 }
 
 .certification-info .issuer,
@@ -142,6 +191,12 @@ main {
     font-size: 0.95rem;
     color: #444;
     margin-top: 10px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.certification-card:hover .certification-info .description {
+    opacity: 1;
 }
 
 /* Footer */
@@ -174,5 +229,13 @@ footer {
     .nav-menu li a {
         width: 100%;
         padding: 12px 0;
+    }
+
+    .certifications-hero h1 {
+        font-size: 2rem;
+    }
+
+    .certifications-grid {
+        grid-template-columns: 1fr;
     }
 }

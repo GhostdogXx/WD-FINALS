@@ -25,24 +25,63 @@
     </header>
 
     <main>
+        <!-- Animated Background Elements -->
+        <div class="bg-animation">
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+                <div class="shape shape-5"></div>
+                <div class="shape shape-6"></div>
+            </div>
+        </div>
+
         <section class="hero">
             <div class="hero-container">
                 <div class="profile-section">
                     <div class="profile-image">
-                        <!-- INSERT PROFILE IMAGE HERE (replace src="assets/images/profile.jpg") -->
-                        <img src="assets/img/formal_picture.png" alt="Profile Picture">
+                        <div class="image-glow"></div>
+                        <div class="rotating-border"></div>
+                        <img src="assets/img/formal_picture.png" alt="Profile Picture" class="profile-img">
+                        <div class="image-particles">
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                            <div class="particle"></div>
+                        </div>
                     </div>
                     <div class="profile-content">
-                        <h1>Jan Paul Fadriquela</h1>
-                        <h2>BSITWMA at FEU Institute of Technology</h2>
-                        <p class="bio">
-                            Aspiring to be a Full Stack Developer/Software Engineer with a passion for innovation and technology. 
-                            I am currently pursuing a Bachelor of Science in Information Technology with a specialization in 
-                            Web and Mobile Application Development at FEU Institute of Technology.
+                        <div class="name-wrapper">
+                            <h1 class="fade-in glitch-text" data-text="Jan Paul Fadriquela">Jan Paul Fadriquela</h1>
+                            <div class="name-underline"></div>
+                        </div>
+                        <h2 class="fade-in typewriter-title" style="animation-delay: 0.2s;">
+                            <span class="highlight">BSITWMA</span> at FEU Institute of Technology
+                        </h2>
+                        <p class="bio fade-in" style="animation-delay: 0.4s;">
+                            <span class="typed-text"></span>
                         </p>
-                        <div class="cta-buttons">
-                            <a href="pages/page1/index.html" class="btn btn-primary">View Projects</a>
-                            <a href="pages/page4/index.html" class="btn btn-secondary">Get In Touch</a>
+                        <div class="skills-showcase fade-in" style="animation-delay: 0.5s;">
+                            <div class="skill-tag">Full Stack</div>
+                            <div class="skill-tag">Web Dev</div>
+                            <div class="skill-tag">Mobile Dev</div>
+                            <div class="skill-tag">Innovation</div>
+                        </div>
+                        <div class="cta-buttons fade-in" style="animation-delay: 0.6s;">
+                            <a href="pages/page1/index.html" class="btn btn-primary">
+                                <span class="btn-content">
+                                    <span class="btn-text">View Projects</span>
+                                    <span class="btn-icon">→</span>
+                                </span>
+                            </a>
+                            <a href="pages/page4/index.html" class="btn btn-secondary">
+                                <span class="btn-content">
+                                    <span class="btn-text">Get In Touch</span>
+                                    <span class="btn-icon">✉</span>
+                                </span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -55,5 +94,7 @@
             <p>&copy; 2025 Jan Paul Fadriquela. All rights reserved.</p>
         </div>
     </footer>
+
+    <script src="assets/js/script.js"></script>
 </body>
 </html>

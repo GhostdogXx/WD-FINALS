@@ -1,288 +1,231 @@
-// DOM Content Loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all functionality
-    initTypingEffect();
-    initScrollAnimations();
-    initCounterAnimation();
-    initMobileMenu();
-    initSmoothScrolling();
-    initNavbarEffects();
-});
+// Wait for DOM to load
+document.addEventListener('DOMContentLoaded', function () {
+    // Typing effect for bio text
+    const typedTextElement = document.querySelector('.typed-text');
+    const bioText = "Aspiring to be a Full Stack Developer/Software Engineer with a passion for innovation and technology. I am currently pursuing a Bachelor of Science in Information Technology with a specialization in Web and Mobile Application Development at FEU Institute of Technology.";
 
-// Typing Effect
-function initTypingEffect() {
-    const typingTexts = [
-        'Full Stack Developer',
-        'Web Designer',
-        'Problem Solver',
-        'Creative Thinker',
-        'Tech Enthusiast'
-    ];
-    
-    const typingElement = document.querySelector('.typing-text');
-    let currentTextIndex = 0;
-    let currentCharIndex = 0;
-    let isDeleting = false;
-    let typeSpeed = 100;
-    
-    function type() {
-        const currentText = typingTexts[currentTextIndex];
-        
-        if (isDeleting) {
-            typingElement.textContent = currentText.substring(0, currentCharIndex - 1);
-            currentCharIndex--;
-            typeSpeed = 50;
-        } else {
-            typingElement.textContent = currentText.substring(0, currentCharIndex + 1);
-            currentCharIndex++;
-            typeSpeed = 100;
+    let charIndex = 0;
+    let isTyping = true;
+
+    function typeText() {
+        if (isTyping && charIndex < bioText.length) {
+            typedTextElement.textContent += bioText.charAt(charIndex);
+            charIndex++;
+            setTimeout(typeText, 25);
+        } else if (charIndex === bioText.length) {
+            const cursor = document.createElement('span');
+            cursor.className = 'typing-cursor';
+            typedTextElement.appendChild(cursor);
         }
-        
-        if (!isDeleting && currentCharIndex === currentText.length) {
-            typeSpeed = 2000;
-            isDeleting = true;
-        } else if (isDeleting && currentCharIndex === 0) {
-            isDeleting = false;
-            currentTextIndex = (currentTextIndex + 1) % typingTexts.length;
-            typeSpeed = 500;
-        }
-        
-        setTimeout(type, typeSpeed);
     }
-    
-    type();
-}
 
-// Scroll Animations
-function initScrollAnimations() {
+    setTimeout(typeText, 1200);
+
+    // Skill tags interactive effects
+    const skillTags = document.querySelectorAll('.skill-tag');
+    skillTags.forEach((tag, index) => {
+        tag.addEventListener('mouseenter', function () {
+            this.style.animationDelay = `${index * 0.1}s`;
+            this.style.animation = 'skill-bounce 0.6s ease';
+        });
+
+        tag.addEventListener('animationend', function () {
+            this.style.animation = '';
+        });
+    });
+
+    // Profile image floating animation
+    const profileImage = document.querySelector('.profile-img');
+    let isFloating = true;
+
+    function startFloating() {
+        if (isFloating && profileImage) {
+            profileImage.style.animation = 'float-gentle 4s ease-in-out infinite';
+        }
+    }
+
+    profileImage.addEventListener('mouseenter', function () {
+        isFloating = false;
+        this.style.animation = 'none';
+    });
+
+    profileImage.addEventListener('mouseleave', function () {
+        isFloating = true;
+        startFloating();
+    });
+
+    setTimeout(startFloating, 2000);
+
+    // Particle animation
+    const particles = document.querySelectorAll('.particle');
+    particles.forEach((particle) => {
+        particle.addEventListener('animationiteration', function () {
+            const randomX = Math.random() * 10 - 5;
+            const randomY = Math.random() * 10 - 5;
+            this.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        });
+    });
+
+    // Smooth scrolling for navigation
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            if (this.getAttribute('href').startsWith('#')) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+    });
+
+    // Header scroll effect
+    const header = document.querySelector('header');
+    let lastScrollY = window.scrollY;
+
+    window.addEventListener('scroll', function () {
+        const currentScrollY = window.scrollY;
+
+        if (currentScrollY > 50) {
+            header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+            header.style.backdropFilter = 'blur(10px)';
+        } else {
+            header.style.backgroundColor = '#ffffff';
+            header.style.backdropFilter = 'none';
+        }
+
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+            header.style.transform = 'translateY(-100%)';
+        } else {
+            header.style.transform = 'translateY(0)';
+        }
+
+        lastScrollY = currentScrollY;
+    });
+
+    // Button interactions and ripple effects
+    const buttons = document.querySelectorAll('.btn');
+    buttons.forEach(button => {
+        button.addEventListener('mouseenter', function () {
+            const icon = this.querySelector('.btn-icon');
+            if (icon) {
+                icon.style.transform = 'translateX(5px) scale(1.1)';
+            }
+        });
+
+        button.addEventListener('mouseleave', function () {
+            const icon = this.querySelector('.btn-icon');
+            if (icon) {
+                icon.style.transform = 'translateX(0) scale(1)';
+            }
+        });
+
+        button.addEventListener('click', function (e) {
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+
+            ripple.style.cssText = `
+                position: absolute;
+                width: ${size}px;
+                height: ${size}px;
+                left: ${x}px;
+                top: ${y}px;
+                background: radial-gradient(circle, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.1) 70%);
+                border-radius: 50%;
+                transform: scale(0);
+                animation: enhanced-ripple 0.8s ease-out;
+                pointer-events: none;
+                z-index: 10;
+            `;
+
+            this.appendChild(ripple);
+
+            setTimeout(() => {
+                ripple.remove();
+            }, 800);
+        });
+    });
+
+    // Add ripple keyframes
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes enhanced-ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+
+    // Intersection Observer for fade-in
     const observerOptions = {
         threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        rootMargin: '0px 0px -20px 0px'
     };
-    
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
+                entry.target.classList.add('animate-in');
             }
         });
     }, observerOptions);
-    
-    // Observe elements for animation
-    const animatedElements = document.querySelectorAll('.section-title, .skill-card, .stat-item');
-    animatedElements.forEach(el => observer.observe(el));
-}
 
-// Counter Animation
-function initCounterAnimation() {
-    const counters = document.querySelectorAll('.stat-number');
-    const observerOptions = {
-        threshold: 0.5
-    };
-    
-    const counterObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const counter = entry.target;
-                const target = parseInt(counter.getAttribute('data-target'));
-                let count = 0;
-                const increment = target / 100;
-                
-                const updateCount = () => {
-                    if (count < target) {
-                        count += increment;
-                        counter.textContent = Math.ceil(count);
-                        setTimeout(updateCount, 20);
-                    } else {
-                        counter.textContent = target;
-                    }
-                };
-                
-                updateCount();
-                counterObserver.unobserve(counter);
+    const animatedElements = document.querySelectorAll('.fade-in');
+    animatedElements.forEach((el, index) => {
+        el.style.animationDelay = `${index * 0.2}s`;
+        observer.observe(el);
+    });
+
+    // Easter egg: double-click effect on profile image
+    let clickCount = 0;
+    let clickTimer;
+
+    profileImage.addEventListener('click', function () {
+        clickCount++;
+
+        if (clickCount === 1) {
+            clickTimer = setTimeout(() => {
+                clickCount = 0;
+            }, 500);
+        } else if (clickCount === 2) {
+            clearTimeout(clickTimer);
+            this.style.transform = 'rotate(360deg) scale(1.2)';
+            this.style.filter = 'hue-rotate(180deg)';
+
+            // Optional sparkle function
+            if (typeof createSparkles === 'function') {
+                createSparkles(this);
             }
-        });
-    }, observerOptions);
-    
-    counters.forEach(counter => counterObserver.observe(counter));
-}
 
-// Mobile Menu Toggle
-function initMobileMenu() {
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
-    
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
-    
-    // Close menu when clicking on a link
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-        });
-    });
-}
+            setTimeout(() => {
+                this.style.transform = '';
+                this.style.filter = '';
+            }, 1000);
 
-// Smooth Scrolling
-function initSmoothScrolling() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-}
-
-// Navbar Effects
-function initNavbarEffects() {
-    const navbar = document.querySelector('.navbar');
-    let lastScrollTop = 0;
-    
-    window.addEventListener('scroll', () => {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        // Add background on scroll
-        if (scrollTop > 50) {
-            navbar.style.background = 'rgba(0, 0, 0, 0.9)';
-        } else {
-            navbar.style.background = 'rgba(255, 255, 255, 0.1)';
+            clickCount = 0;
         }
-        
-        // Hide/show navbar on scroll
-        if (scrollTop > lastScrollTop && scrollTop > 100) {
-            navbar.style.transform = 'translateY(-100%)';
-        } else {
-            navbar.style.transform = 'translateY(0)';
-        }
-        
-        lastScrollTop = scrollTop;
     });
-}
 
-// Parallax Effect for Background Shapes
-function initParallaxEffect() {
-    const shapes = document.querySelectorAll('.shape');
-    
-    window.addEventListener('scroll', () => {
+    // Parallax effect for hero section
+    window.addEventListener('scroll', function () {
         const scrolled = window.pageYOffset;
-        
-        shapes.forEach((shape, index) => {
-            const speed = (index + 1) * 0.1;
-            const yPos = -(scrolled * speed);
-            shape.style.transform = `translateY(${yPos}px)`;
-        });
+        const heroSection = document.querySelector('.hero');
+        if (heroSection) {
+            heroSection.style.transform = `translateY(${scrolled * 0.5}px)`;
+        }
     });
-}
 
-// Initialize parallax effect
-initParallaxEffect();
-
-// Add some interactive effects
-document.addEventListener('mousemove', (e) => {
-    const shapes = document.querySelectorAll('.shape');
-    const mouseX = e.clientX;
-    const mouseY = e.clientY;
-    
-    shapes.forEach((shape, index) => {
-        const speed = (index + 1) * 0.01;
-        const x = (mouseX * speed);
-        const y = (mouseY * speed);
-        
-        shape.style.transform += ` translate(${x}px, ${y}px)`;
+    // Add loading animation class
+    window.addEventListener('load', function () {
+        document.body.classList.add('loaded');
     });
 });
-
-// Skill cards hover effect
-document.querySelectorAll('.skill-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-10px) scale(1.05)';
-    });
-    
-    card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
-    });
-});
-
-// Add loading animation
-window.addEventListener('load', () => {
-    document.body.style.overflow = 'hidden';
-    
-    setTimeout(() => {
-        document.body.style.overflow = 'auto';
-        document.querySelectorAll('.hero-title, .typing-container, .hero-description, .hero-buttons').forEach((el, index) => {
-            el.style.animationDelay = `${index * 0.5}s`;
-        });
-    }, 100);
-});
-
-// Add custom cursor effect
-document.addEventListener('mousemove', (e) => {
-    const cursor = document.querySelector('.custom-cursor');
-    if (cursor) {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-    }
-});
-
-// Keyboard navigation
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-    }
-});
-
-// Add scroll progress indicator
-function addScrollProgress() {
-    const progressBar = document.createElement('div');
-    progressBar.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 0%;
-        height: 3px;
-        background: linear-gradient(45deg, #667eea, #764ba2);
-        z-index: 9999;
-        transition: width 0.1s ease;
-    `;
-    document.body.appendChild(progressBar);
-    
-    window.addEventListener('scroll', () => {
-        const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-        progressBar.style.width = scrolled + '%';
-    });
-}
-
-// Initialize scroll progress
-addScrollProgress();
-
-// Performance optimization: Throttle scroll events
-function throttle(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Apply throttling to scroll events
-const throttledScroll = throttle(() => {
-    initNavbarEffects();
-}, 16);
-
-window.addEventListener('scroll', throttledScroll);
