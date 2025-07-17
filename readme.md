@@ -61,7 +61,7 @@ This is a multi-page web design project for the Web Design subject. The main obj
 
 
 ```
-WD-Seatwork-2
+WD-FINALS
 └─ assets
 |   └─ css
 |   |   └─ style.css
@@ -85,25 +85,23 @@ WD-Seatwork-2
 
 ## Resources
 
-- **Titans Tower image**  
-  [View image](https://i.pinimg.com/1200x/7d/a8/6e/7da86e655e53668e3a6c1819f63cf925.jpg)
+- **CCNA: Switching, Routing, and Wireless Essentials**  
+  [📄 Certificate](https://www.credly.com/badges/69b7a60b-774f-4833-8730-18263cef7b7e)  
+  [🏅 Badge](https://www.netacad.com/certificates?issuanceId=69451b9d-99d0-4b29-bd51-0004ce3d48dc)
 
-- **Robin images**  
-  [Image 1](https://i.pinimg.com/1200x/18/15/84/1815845b70beb8fef029455bf430db02.jpg)  
-  [Image 2](https://i.pinimg.com/736x/f1/33/a7/f133a7ee98699278d841810ad78954ba.jpg)
+- **CCNA: Introduction to Networks**  
+  [📄 Certificate](https://www.netacad.com/certificates?issuanceId=3699929a-dec6-45d4-a881-6e540e499076)  
+  [🏅 Badge](https://www.credly.com/badges/69b7a60b-774f-4833-8730-18263cef7b7e)
 
-- **Starfire image**  
-  [View image](https://i.pinimg.com/736x/50/2a/d9/502ad991323b67c7611fd072cb7bb28e.jpg)
+- **ITS Python**  
+  [📄 Certificate](https://www.certiport.com/portal/Pages/PrintTranscriptInfo.aspx?action=Cert&format=pdf&id=471)
 
-- **Raven image**  
-  [View image](https://i.pinimg.com/736x/f8/27/a5/f827a554169e043be711e41bd69405dc.jpg)
+- **ITS HTML and CSS**  
+  [📄 Certificate](https://www.certiport.com/portal/Pages/PrintTranscriptInfo.aspx?action=Cert&format=pdf&id=468)
 
-- **Cyborg image**  
-  [View image](https://i.pinimg.com/1200x/48/08/98/4808983a444e0caebd6522d9ed16d86c.jpg)
-
-- **Beast Boy image**  
-  [View image](https://i.pinimg.com/736x/af/3e/44/af3e44fa2fba9b8a16990b334acec3f2.jpg)
+- **Cisco Certified Support Technician (CCST) – Networking**  
+  [📄 Certificate](https://www.certiport.com/portal/Pages/PrintTranscriptInfo.aspx?action=Cert&format=pdf&id=516)
 
 | Title | Purpose | Link |
 |-|-|-|
-| Portfolio | Is to create 5 pages of our own portfolio. | trykolang.com |
+| Portfolio | Is to create 5 pages of our own portfolio. | https://ghostdogxx.github.io/WD-SEATWORK_2/ |
